@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<style>
+    body {
+         background-color: gray;
+         /* background: url(https://coreldrawdesign.com/resources/previews/preview-3d-neon-retro-background-download-from-coreldrawdesign-1630764741.jpg); */
+         background-size: cover;
+    }
+    
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100vh;
+        text-align: center;
+        align-items: center;
+    }
+
+    .car {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        position: absolute;
+        z-index: 2;
+        bottom: 290px;
+    }
+
+    .ww {
+        width: 380px;
+        height: 160px;
+        position: absolute;
+        bottom: 54px;
+        left: 2px;
+        background-color: #1c1c1c;
+        clip-path: polygon(24.5% 42.5%, 76.25% 42.5%, 96.75% 75%, 7.25% 75%);
+    }
+    .w {
+        width: 360px;
+        height: 120px;
+        border-top-right-radius: 75px;
+        border-top-left-radius: 75px;
+        position: absolute;
+        bottom: 67px;
+        left: 11px;
+        clip-path: polygon(24.5% 42.5%, 76.25% 42.5%, 96.75% 75%, 7.25% 75%);
+        background-color: #000000;
+    }
+    .l {
+        width: 220px;
+        height: 0.1px;
+        background-color: rgb(51, 48, 48);
+        top: 60px;
+        left: 73px;
+        position: absolute;
+    }
+    .line2 {
+        width: 270px;
+        top: 70px;
+        left: 60px
+    }
+    .line3 {
+        width: 290px;
+        top: 80px;
+        left: 41px;
+    }
+    .t {
+        width: 270px;
+        height: 60px;
+        top: 30px;
+        border-bottom-right-radius: 15px;
+        border-bottom-left-radius: 15px;
+        background-color: #303030;
+        position: absolute;
+        z-index: 0;
+    }
+    .p1 {
+        width: 320px;
+        height: 30px;
+        border-top-right-radius: 15px;
+        border-top-left-radius: 15px;
+        background-color: #303030;
+        position: absolute;
+        border-bottom: 2px solid #1c1c1c;
+    }
+
+    .p2 {
+        width: 400px;
+        height: 100px;
+        border-top-right-radius: 55px;
+        border-top-left-radius: 55px;
+        background-color: #1c1c1c;
+    }
+
+    .p3 {
+        width: 450px;
+        height: 115px;
+        border-top-right-radius: 55px;
+        border-top-left-radius: 55px;
+        background-color: #1c1c1c;
+        position: absolute;
+        top: 22px;
+        z-index: -1;
+    }
+
+    .lgr {
+        position: absolute;
+        display: flex;
+        gap: 2rem;
+        justify-content: space-around;
+    }
+
+    .lr {
+        width: 35px;
+        height: 35px;
+        background-color: #9c1111;
+        position: absolute;
+        border-radius: 100%;
+        top: 2.2rem;
+        right: 14px;
+    }
+    .lr2 {
+        width: 33px;
+        height: 33px;
+        background-color: #9c1111;
+        position: absolute;
+        border-radius: 100%;
+        top: 2.3rem;
+        right: 58px;
+    }
+    .l1 {
+        width: 23px;
+        height: 23px;
+        background-color: #ed0c0c;
+        position: absolute;
+        border-radius: 100%;
+        top: 7px;
+        right: 49px;
+        z-index: 1;
+        animation: lights 1s ease-in-out infinite;
+    }
+    .l2 {
+        width: 25px;
+        height: 25px;
+        background-color: #ed0c0c;
+        position: absolute;
+        border-radius: 100%;
+        top: 3px;
+        right: -39px;
+        z-index: 1;
+        animation: lights 1s ease-in-out infinite;
+    }
+
+    .r1 {
+        width: 23px;
+        height: 23px;
+        background-color: #ed0c0c;
+        position: absolute;
+        border-radius: 100%;
+        top: 7px;
+        right: -37px;
+        z-index: 1;
+        animation: lights 1s ease-in-out infinite;
+    }
+    .r2 {
+        width: 25px;
+        height: 25px;
+        background-color: #ed0c0c;
+        position: absolute;
+        border-radius: 100%;
+        top: 3px;
+        right: 47px;
+        z-index: 1;
+        animation: lights 1s ease-in-out infinite;
+    }
+
+
+    .rr {
+        width: 35px;
+        height: 35px;
+        background-color: #9c1111;
+        position: absolute;
+        border-radius: 100%;
+        top: 2.2rem;
+        left: 14px;
+    }
+    .rr2 {
+        width: 33px;
+        height: 33px;
+        background-color: #9c1111;
+        position: absolute;
+        border-radius: 100%;
+        top: 2.3rem;
+        left: 58px;
+    }
+
+    .logo {
+        width: 30px;
+        height: 15px;
+        background-color: black;
+        position: absolute;
+        top: 3px;
+        color: white;
+        text-align: center;
+        padding-top: 10px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .logo > span {
+        padding-bottom: 10px;
+        font-size: 10px;
+    }
+    .logo > .i {
+        transform: rotate(-3deg);
+    }
+    .logo > .i2 {
+        transform: rotate(3deg);
+    }
+    
+
+    .np {
+        width: 80px;
+        height: 30px;
+        background-color: black;
+        position: absolute;
+        top: 44px;
+        color: white;
+        text-align: center;
+        padding-top: 10px;
+        border-radius: 10px;
+    }
+    
+    .tl {
+        width: 60px;
+        height: 80px;
+        background-color: #0f0f0f;
+        position: absolute;
+        border-radius: 15px;
+        transform: rotate(5deg);
+        top: 80px;
+        left: -28px;
+        z-index: -2;
+        animation: tierleft 0.5s ease-in-out infinite;
+    }
+    
+    .tr {
+        width: 60px;
+        height: 80px;
+        background-color: #0f0f0f;
+        position: absolute;
+        border-radius: 15px;
+        transform: rotate(-5deg);
+        top: 80px;
+        right: -28px;
+        z-index: -2;
+        animation: tierright 0.5s ease-in-out infinite;
+    }
+
+    .s {
+        display: flex;
+        gap: 1px;
+        position: absolute;
+        top: 120px;
+        right: 40px;
+    }
+
+    .s1 {
+        width: 20px;
+        height: 20px;
+        background-color: rgb(45, 42, 42);
+        border-radius: 100%;
+    }
+    .s2 {
+        width: 20px;
+        height: 20px;
+        background-color: rgb(45, 42, 42);
+        border-radius: 100%;
+    }
+
+    .spoiler {
+        position: absolute;
+        top: -35px;
+    }
+
+    .st {
+        width: 430px;
+        height: 20px;
+        background-color: rgba(5, 4, 4, 0.699);
+        border-radius: 4px;
+    }
+    
+    .sp-l {
+        width: 5px;
+        height: 30px;
+        background-color: rgba(5, 4, 4, 0.699);
+        position: absolute;
+        left: 110px;
+        top: 18px;
+        transform: rotate(-15deg);
+    }
+    .sp-r {
+        width: 5px;
+        height: 30px;
+        background-color: rgba(5, 4, 4, 0.699);
+        position: absolute;
+        right: 110px;
+        top: 18px;
+        transform: rotate(15deg);
+    }
+    
+
+    @keyframes lights {
+        0% {
+            transform: scale(0.9);
+        } 
+
+        50% {
+            transform: scale(1.1);
+        }
+
+        100% {
+            transform: scale(0.9);
+        }
+    }
+
+    @keyframes tierleft {
+        0% {
+            transform: translateY(0);
+            transform: rotate(4deg);
+        }
+        
+        50% {
+            transform: translateY(1px) rotate(5deg);
+        }
+
+        100% {
+            transform: translateY(0);
+            transform: rotate(4deg);
+        }
+    }
+
+    @keyframes tierright {
+        0% {
+            transform: translateY(0);
+            transform: rotate(-4deg);
+        }
+        
+        50% {
+            transform: translateY(1px) rotate(-5deg);
+        }
+
+        100% {
+            transform: translateY(0);
+            transform: rotate(-4deg);
+        }
+    }
+
+    .road {
+        width: 1200px;
+        height: 800px;
+        background-color: rgb(214, 170, 9);
+        clip-path: polygon(24.5% 42.5%, 76.25% 42.5%, 96.75% 75%, 7.25% 75%);
+    }
+    .strip1 {
+        width: 20px;
+        height: 80px;
+        background-color: rgb(255, 191, 0);
+        background-color: whitesmoke;
+        z-index: 1;
+        position: absolute;
+        top: 450px;
+        left: 500px;
+        transform: rotate(12deg);
+        animation: run2 1.2s infinite;
+    }
+    .strip2 {
+        width: 20px;
+        height: 80px;
+        background-color: rgb(255, 191, 0);
+        background-color: whitesmoke;
+        z-index: 1;
+        position: absolute;
+        top: 450px;
+        right: 500px;
+        transform: rotate(-12deg);
+        animation: run 1.2s infinite ease;
+    }
+
+    @keyframes run {
+        0% {
+            transform: translateY(0) rotate(-12deg);
+        } 
+
+        50% {
+            transform: translateY(-300px) rotate(-12deg);
+        }
+
+        90% {
+            transform: translateY(100px) rotate(-12deg);
+        }
+
+        100% {
+            transform: translateY(0) rotate(-12deg);
+        }
+    }
+    @keyframes run2 {
+        0% {
+            transform: translateY(0) rotate(12deg);
+        } 
+
+        50% {
+            transform: translateY(-300px) rotate(12deg);
+        }
+
+        90% {
+            transform: translateY(100px) rotate(12deg);
+        }
+
+        100% {
+            transform: translateY(0) rotate(12deg);
+        }
+    }
+
+</style>
+<body>
+
+    <div class="container">
+
+        <div class="road">
+            <div class="strip1"></div>
+            <div class="strip2"></div>
+        </div>
+
+        <div class="car">
+
+            <div class="ww"></div>
+
+            <div class="w">
+                <div class="l"></div>
+                <div class="l line2"></div>
+                <div class="l line3"></div>
+            </div>
+
+            <div class="t"></div>
+            <div class="p1"></div>
+            <div class="p2"></div>
+
+            <div class="lr">
+                <div class="l1"></div>
+            </div>
+            <div class="lr2">
+                <div class="l2"></div>
+            </div>
+
+            <div class="rr">
+                <div class="r1"></div>
+            </div>
+            <div class="rr2">
+                <div class="r2"></div>
+            </div>
+
+            <div class="logo">
+                <span class="i">I</span>
+                <span>-</span>
+                <span class="i2">I</span>
+            </div>
+
+            <div class="np">0IIIII</div>
+
+            <div class="p3"></div>
+
+            <div class="tl"></div>
+            <div class="tr"></div>
+
+            <div class="s">
+                <div class="s1"></div>
+                <div class="s2"></div>
+            </div>
+
+            <div class="spoiler">
+                <div class="si">
+                    <div class="st"></div>
+                    <div class="sp-l"></div>
+                    <div class="sp-r"></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    
+    <script>
+
+    </script> 
+</body>
+</html>
